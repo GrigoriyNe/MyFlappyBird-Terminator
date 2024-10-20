@@ -3,7 +3,7 @@ using UnityEngine;
 public class ObjectRemover : MonoBehaviour
 {
     [SerializeField] private EnemyPool _poolEnemy;
-    [SerializeField] private BuletPool _poolBullet;
+    [SerializeField] private ScorePool _poolScore;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -11,9 +11,9 @@ public class ObjectRemover : MonoBehaviour
         {
             _poolEnemy.PutObject(enemy);
         }
-        if (other.TryGetComponent(out Bullet bullet))
+        if (other.TryGetComponent(out ScoreZone score))
         {
-            _poolBullet.PutObject(bullet);
+            _poolScore.PutObject(score);
         }
     }
 }

@@ -575,6 +575,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 693823594}
+  - {fileID: 2108640030}
   - {fileID: 1161556929}
   - {fileID: 1315618398}
   - {fileID: 2119311644}
@@ -607,7 +608,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bat: {fileID: 1544386598}
-  _pipeGenerator: {fileID: 693823595}
   _startScreen: {fileID: 508095920}
   _endGameScreen: {fileID: 1868052239}
 --- !u!1 &557734133
@@ -753,8 +753,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 693823594}
-  - component: {fileID: 693823595}
   - component: {fileID: 693823596}
+  - component: {fileID: 693823597}
   m_Layer: 0
   m_Name: EnemyGenerator
   m_TagString: Untagged
@@ -777,22 +777,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 519420032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &693823595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 693823591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f4f836e2110b349bd9592b2bde20de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _delay: 4
-  _lowerBound: -3
-  _upperBound: 3
-  _enemy: {fileID: 693823596}
 --- !u!114 &693823596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,6 +791,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _container: {fileID: 731483209}
   _prefab: {fileID: 4947160420183172216, guid: d2e825c1c31f49046b37cfda5f6bba94, type: 3}
+--- !u!114 &693823597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693823591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1cc920b163f7541ba8ddbee6cc8129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _delay: 3
+  _lowerBound: -3
+  _upperBound: 3
+  _prefab: {fileID: 693823596}
 --- !u!1 &731483208
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,7 +873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -123}
+  m_AnchoredPosition: {x: -421, y: -123}
   m_SizeDelta: {x: 1083.2146, y: 236.3928}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &786135270
@@ -923,7 +923,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 288.45
+  m_fontSize: 226.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -959,7 +959,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0.00012207031, y: -2.9800415, z: 0.81225586, w: -63.311707}
+  m_margin: {x: 0.00012207031, y: -2.9800415, z: 110.22821, w: 1.5272601}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1188,7 +1188,7 @@ GameObject:
   - component: {fileID: 1161556930}
   - component: {fileID: 1161556931}
   m_Layer: 0
-  m_Name: EnemyRemover
+  m_Name: ObjectRemover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1222,7 +1222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poolEnemy: {fileID: 693823596}
-  _poolBullet: {fileID: 2119311643}
+  _poolScore: {fileID: 2108640032}
 --- !u!61 &1161556931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2104,17 +2104,69 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _windowGroup: {fileID: 1868052238}
   _actionButton: {fileID: 350220593}
---- !u!114 &2119311643 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 127058404764082353, guid: 134adb97dfe0d704a83d22f7786911e9, type: 3}
-  m_PrefabInstance: {fileID: 7090244779281561747}
+--- !u!1 &2108640029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2108640030}
+  - component: {fileID: 2108640032}
+  - component: {fileID: 2108640031}
+  m_Layer: 0
+  m_Name: ScoreZoneGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2108640030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108640029}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10.53, y: -0.35467908, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 519420032}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2108640031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108640029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0127f25a17a33d942abe37001408e145, type: 3}
+  m_Script: {fileID: 11500000, guid: ffce71e12c920974f8b7c00e6c4c896e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _delay: 5
+  _lowerBound: -3
+  _upperBound: 3
+  _prefab: {fileID: 2108640032}
+--- !u!114 &2108640032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108640029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11035a2cee97af3409240e255a5c369b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _container: {fileID: 1390880740}
+  _prefab: {fileID: 5280314604879673260, guid: 1a02b11ee65d4d04d8b0cc839c81ec8e, type: 3}
 --- !u!4 &2119311644 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5872025049835918519, guid: 134adb97dfe0d704a83d22f7786911e9, type: 3}

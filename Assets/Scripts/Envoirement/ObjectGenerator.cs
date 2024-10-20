@@ -1,12 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Pool;
 
-public class ObjectGenerator : MonoBehaviour
+public abstract class ObjectGenerator<T> : MonoBehaviour where T : SpawnerableObject
 {
     [SerializeField] private float _delay;
     [SerializeField] private float _lowerBound;
     [SerializeField] private float _upperBound;
-    [SerializeField] private EnemyPool _enemy;
+    [SerializeField] private ObjectPool<T> _prefab;
+
 
     private void Start()
     {
@@ -29,9 +31,9 @@ public class ObjectGenerator : MonoBehaviour
         float spawnPositionY = Random.Range(_lowerBound, _upperBound);
         Vector3 spawnPoint = new Vector3(transform.position.x, spawnPositionY, transform.position.z);
 
-        var enemy = _enemy.GetObject();
+        var @object = _prefab.GetObject();
 
-        enemy.gameObject.SetActive(true);
-        enemy.transform.position = spawnPoint;
+        @object.gameObject.SetActive(true);
+        @object.transform.position = spawnPoint;
     }
 }

@@ -4,7 +4,8 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     [SerializeField] private Bat _bat;
-    [SerializeField] private ObjectGenerator _pipeGenerator;
+    //[SerializeField] private EnemyGenerator _enemyGenerator;
+    //[SerializeField] private ScoreGenerator _scoreGenerator;
     [SerializeField] private StartScreen _startScreen;
     [SerializeField] private EndGameScreen _endGameScreen;
 

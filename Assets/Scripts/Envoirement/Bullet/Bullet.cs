@@ -27,8 +27,6 @@ public class Bullet : SpawnerableObject, IInteractable
         }
 
         Destroy(gameObject);
-
-       //  _pool.PutObject(this);
     }
 
 
