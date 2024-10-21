@@ -34,7 +34,6 @@ public class Bat : MonoBehaviour
         if (interactable is Enemy || interactable is Ground || interactable is Bullet)
         {
             GameOver?.Invoke();
-            StopAllCoroutines();
         }
 
         else if (interactable is ScoreZone)

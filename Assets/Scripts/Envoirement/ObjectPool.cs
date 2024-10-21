@@ -6,37 +6,43 @@ public abstract class ObjectPool<T> : MonoBehaviour where T : SpawnerableObject
     [SerializeField] protected Transform _container;
     [SerializeField] protected SpawnerableObject _prefab;
 
-    protected Queue<SpawnerableObject> _pool;
+    protected Queue<T> _pool;
 
-    public int Counter => _pool.Count;
     public IEnumerable<SpawnerableObject> PooledObjects => _pool;
 
     private void Awake()
     {
-        _pool = new Queue<SpawnerableObject>();
+        _pool = new Queue<T>();
     }
 
     public void Reset()
     {
         _pool.Clear();
+
+        while (_container.childCount > 0)
+        {
+            DestroyImmediate(_container.GetChild(0).gameObject);
+        }
     }
 
-    public virtual SpawnerableObject GetObject()
+    public SpawnerableObject GetObject()
     {
         if (_pool.Count == 0)
         {
-            var obj = Instantiate(_prefab);
+            SpawnerableObject obj = Instantiate(_prefab);
             obj.transform.parent = _container;
+            obj.Returned += PutObject;
 
             return obj;
         }
-
+        
         return _pool.Dequeue();
     }
 
-    public virtual void PutObject(SpawnerableObject obj)
+    public void PutObject(SpawnerableObject obj)
     {
-        _pool.Enqueue(obj);
+        _pool.Enqueue(obj as T);
+        obj.Returned -= PutObject;
         obj.gameObject.SetActive(false);
     }
 }

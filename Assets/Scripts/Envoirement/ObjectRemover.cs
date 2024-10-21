@@ -7,13 +7,9 @@ public class ObjectRemover : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Enemy enemy))
+        if (other.TryGetComponent(out SpawnerableObject obj))
         {
-            _poolEnemy.PutObject(enemy);
-        }
-        if (other.TryGetComponent(out ScoreZone score))
-        {
-            _poolScore.PutObject(score);
+            obj.Return(obj);
         }
     }
 }

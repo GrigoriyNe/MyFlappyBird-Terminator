@@ -8,8 +8,8 @@ public class InputReader : MonoBehaviour
     private const KeyCode Jump = KeyCode.Space;
     private const int ValueOfLeftClickMouse = 0;
 
-    public event Action<bool> IsFlyes;
-    public event Action<bool> IsAtack;
+    public event Action IsFlyes;
+    public event Action IsAtack;
 
     private void Update()
     {
@@ -19,17 +19,14 @@ public class InputReader : MonoBehaviour
 
     private void TryFly()
     {
-        IsFlyes?.Invoke(false);
-
         if (Input.GetKey(Jump))
-            IsFlyes?.Invoke(true);
+            IsFlyes?.Invoke();
     }
 
     private void TryAtack()
     {
-        IsAtack?.Invoke(false);
 
         if (Input.GetMouseButton(ValueOfLeftClickMouse))
-            IsAtack?.Invoke(true);
+            IsAtack?.Invoke();
     }
 }

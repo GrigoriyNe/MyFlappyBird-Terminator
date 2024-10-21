@@ -9,32 +9,27 @@ public class Bullet : SpawnerableObject, IInteractable
     private Coroutine _coroutine = null;
     private float _timer = 0;
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent(out Enemy enemy))
+            Return(enemy);
+    }
+
     public void MakeShoot(float direction)
     {
-        if (_coroutine == null)
+        if (_coroutine == null && gameObject.activeSelf)
             _coroutine = StartCoroutine(Life(direction));
     }
 
     private IEnumerator Life(float direction)
     {
-
         while (_timer < _lifeTime)
         {
-
             _timer += Time.deltaTime;
             transform.Translate(transform.right * (direction * (Time.deltaTime * _speed)), Space.World);
             yield return null;
         }
 
-        Destroy(gameObject);
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent(out Enemy enemy))
-        {
-            enemy.gameObject.SetActive(false);
-        }
+        Return(this);
     }
 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6901530109630934438
+--- !u!1 &3846401330454265688
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5872025049835918519}
-  - component: {fileID: 127058404764082353}
+  - component: {fileID: 3946035648900357126}
+  - component: {fileID: 4551962684584842099}
   m_Layer: 0
-  m_Name: PoolBullets
+  m_Name: BulletPoolEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5872025049835918519
+--- !u!4 &3946035648900357126
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6901530109630934438}
+  m_GameObject: {fileID: 3846401330454265688}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.38604, y: -5.7993927, z: 9.748059}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.04924, y: -0.9700544, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &127058404764082353
+--- !u!114 &4551962684584842099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6901530109630934438}
+  m_GameObject: {fileID: 3846401330454265688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0127f25a17a33d942abe37001408e145, type: 3}
+  m_Script: {fileID: 11500000, guid: 584d9193e9e4c164f922a4f77e19b91f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _container: {fileID: 7827815842301871590, guid: 2eb953ea4e2c58247b203a4ee43d1f69, type: 3}
-  _prefab: {fileID: 4536240729757035989, guid: f87e720402c835b4c9aa35c4f68eabcf, type: 3}
+  _container: {fileID: 3946035648900357126}
+  _prefab: {fileID: 3235868047352490327, guid: e87955d6fa6682947900d3b0b86c0ff2, type: 3}
+  _xOffset: 2
+  _xDirectionShoot: -1

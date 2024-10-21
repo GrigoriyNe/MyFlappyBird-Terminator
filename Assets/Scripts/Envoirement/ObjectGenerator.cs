@@ -1,14 +1,12 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public abstract class ObjectGenerator<T> : MonoBehaviour where T : SpawnerableObject
 {
     [SerializeField] private float _delay;
     [SerializeField] private float _lowerBound;
     [SerializeField] private float _upperBound;
-    [SerializeField] private ObjectPool<T> _prefab;
-
+    [SerializeField] private ObjectPool<T> _pool;
 
     private void Start()
     {
@@ -31,9 +29,9 @@ public abstract class ObjectGenerator<T> : MonoBehaviour where T : SpawnerableOb
         float spawnPositionY = Random.Range(_lowerBound, _upperBound);
         Vector3 spawnPoint = new Vector3(transform.position.x, spawnPositionY, transform.position.z);
 
-        var @object = _prefab.GetObject();
+        var obj = _pool.GetObject();
 
-        @object.gameObject.SetActive(true);
-        @object.transform.position = spawnPoint;
+        obj.gameObject.SetActive(true);
+        obj.transform.position = spawnPoint;
     }
 }
