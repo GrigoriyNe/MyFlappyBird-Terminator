@@ -1,5 +1,1 @@
-
-public class EnemyGenerator : ObjectGenerator<Enemy>
-{
-    
-}
+public class EnemyGenerator : ObjectGenerator<Enemy> { }

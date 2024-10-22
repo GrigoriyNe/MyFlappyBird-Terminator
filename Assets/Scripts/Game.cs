@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -7,10 +8,8 @@ public class Game : MonoBehaviour
     [SerializeField] private ScoreGenerator _scoreGenerator;
     [SerializeField] private StartScreen _startScreen;
     [SerializeField] private EndGameScreen _endGameScreen;
-    [SerializeField] private EnemyPool _enemyPool;
-    [SerializeField] private ScorePool _scorePool;
-    [SerializeField] private BuletPool _buletPoolEnemy;
-    [SerializeField] private BuletPool _buletPoolBat;
+
+    public event Action Play;
 
     private void Start()
     {
@@ -18,6 +17,7 @@ public class Game : MonoBehaviour
         _startScreen.Open();
         _endGameScreen.gameObject.SetActive(false);
         StopAllCoroutines();
+        ChangeGenered(false);
     }
 
     private void OnEnable()
@@ -25,7 +25,6 @@ public class Game : MonoBehaviour
         _startScreen.PlayButtonClicked += OnPlayButtonClick;
         _endGameScreen.RestartButtonClicked += OnRestartButtonClick;
         _bat.GameOver += OnGameOver;
-        ChangeGenered(false);
     }
 
     private void OnDisable()
@@ -58,17 +57,13 @@ public class Game : MonoBehaviour
     {
         Time.timeScale = 1;
         _bat.Reset();
+        Play?.Invoke();
         ChangeGenered(true);
-        _enemyPool.Reset();
-        _scorePool.Reset();
-        _buletPoolEnemy.Reset();
-        _buletPoolBat.Reset();
     }
 
     private void ChangeGenered(bool isActive)
     {
         _enemyGenerator.gameObject.SetActive(isActive);
         _scoreGenerator.gameObject.SetActive(isActive);
-        _buletPoolEnemy.gameObject.SetActive(isActive);
     }
 }

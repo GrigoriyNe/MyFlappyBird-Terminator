@@ -7,10 +7,7 @@ public abstract class Attacker : MonoBehaviour
 
     public void Attack()
     {
-        float _xOffset = 3;
-
-        Vector3 _targetVector3 = new Vector3(_xOffset, 0);
-        SpawnerableObject newBullet =_pool.GetBullet(transform.position, _xDirectionShoot);
+        SpawnerableObject newBullet =_pool.GetObject(transform.position);
         newBullet.TryGetComponent(out Bullet bullet);
         bullet.MakeShoot(_xDirectionShoot);
     }

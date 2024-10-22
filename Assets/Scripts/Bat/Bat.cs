@@ -1,9 +1,7 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(BatMover))]
-[RequireComponent(typeof(ScoreCounter))]
-[RequireComponent(typeof(BatCollisionHandler))]
+[RequireComponent(typeof(BatMover), typeof(ScoreCounter), typeof(BatCollisionHandler))]
 public class Bat : MonoBehaviour
 {
     private BatMover _batMover;
@@ -29,6 +27,12 @@ public class Bat : MonoBehaviour
         _handler.CollisionDetected -= ProcessCollision;
     }
 
+    public void Reset()
+    {
+        _scoreCounter.Reset();
+        _batMover.Reset();
+    }
+
     private void ProcessCollision(IInteractable interactable)
     {
         if (interactable is Enemy || interactable is Ground || interactable is Bullet)
@@ -36,15 +40,9 @@ public class Bat : MonoBehaviour
             GameOver?.Invoke();
         }
 
-        else if (interactable is ScoreZone)
+        else if (interactable is Score)
         {
             _scoreCounter.Add();
         }
-    }
-
-    public void Reset()
-    {
-        _scoreCounter.Reset();
-        _batMover.Reset();
     }
 }

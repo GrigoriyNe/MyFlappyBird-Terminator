@@ -3,14 +3,9 @@ using UnityEngine;
 
 public class ScoreCounter : MonoBehaviour
 {
-    private int _score;
+    private int _score = 0;
 
     public event Action<int> ScoreChange;
-
-    private void Awake()
-    {
-        _score = 0;
-    }
 
     public void Reset()
     {

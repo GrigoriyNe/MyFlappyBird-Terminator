@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputReader : MonoBehaviour
@@ -25,7 +23,6 @@ public class InputReader : MonoBehaviour
 
     private void TryAtack()
     {
-
         if (Input.GetMouseButton(ValueOfLeftClickMouse))
             IsAtack?.Invoke();
     }

@@ -1,3 +1,1 @@
-public class AttackerEnemy : Attacker
-{
-}
+public class AttackerEnemy : Attacker { }

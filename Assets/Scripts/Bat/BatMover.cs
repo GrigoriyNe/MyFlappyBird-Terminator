@@ -9,19 +9,16 @@ public class BatMover : MonoBehaviour
     [SerializeField] private float _maxRotationZ;
     [SerializeField] private float _minRotationZ;
     [SerializeField] private InputReader _input;
-    [SerializeField] private AttackerBat _attacker;
 
     private Rigidbody2D _rigidbody2D;
     private Vector3 _startPosition;
     private Quaternion _maxRotation;
     private Quaternion _minRotation;
-    
 
     private void Start()
     {
         _startPosition = transform.position;
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        
 
         _maxRotation = Quaternion.Euler(0, 0, _maxRotationZ);
         _minRotation = Quaternion.Euler(0, 0, _minRotationZ);
