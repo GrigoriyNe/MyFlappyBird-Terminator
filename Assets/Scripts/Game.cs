@@ -11,15 +11,6 @@ public class Game : MonoBehaviour
 
     public event Action Play;
 
-    private void Start()
-    {
-        Time.timeScale = 0;
-        _startScreen.Open();
-        _endGameScreen.gameObject.SetActive(false);
-        StopAllCoroutines();
-        ChangeGenered(false);
-    }
-
     private void OnEnable()
     {
         _startScreen.PlayButtonClicked += OnPlayButtonClick;
@@ -32,6 +23,15 @@ public class Game : MonoBehaviour
         _startScreen.PlayButtonClicked -= OnPlayButtonClick;
         _endGameScreen.RestartButtonClicked -= OnRestartButtonClick;
         _bat.GameOver -= OnGameOver;
+    }
+
+    private void Start()
+    {
+        Time.timeScale = 0;
+        _startScreen.Open();
+        _endGameScreen.gameObject.SetActive(false);
+        StopAllCoroutines();
+        ChangeGenered(false);
     }
 
     private void OnGameOver()

@@ -9,11 +9,6 @@ public class AttackerBat : Attacker
     private Coroutine _coroutine;
     private WaitForSecondsRealtime _delayAttack;
 
-    private void Start()
-    {
-        _delayAttack = new WaitForSecondsRealtime(_delayShootValue);
-    }
-
     private void OnEnable()
     {
         _input.IsAtack += Shoot;
@@ -24,15 +19,22 @@ public class AttackerBat : Attacker
         _input.IsAtack -= Shoot;
     }
 
+    private void Start()
+    {
+        _delayAttack = new WaitForSecondsRealtime(_delayShootValue);
+    }
+
     private void Shoot()
     {
         if (_coroutine == null)
-            _coroutine = StartCoroutine(ShootWhithDelay());
+        {
+            Attack();
+            _coroutine = StartCoroutine(Cooldowning());
+        }
     }
 
-    private IEnumerator ShootWhithDelay()
+    private IEnumerator Cooldowning()
     {
-        Attack();
         yield return _delayAttack;
         _coroutine = null;
     }

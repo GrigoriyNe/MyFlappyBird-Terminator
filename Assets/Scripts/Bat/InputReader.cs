@@ -4,6 +4,7 @@ using UnityEngine;
 public class InputReader : MonoBehaviour
 {
     private const KeyCode Jump = KeyCode.Space;
+    private const KeyCode Attack = KeyCode.P;
     private const int ValueOfLeftClickMouse = 0;
 
     public event Action IsFlyes;
@@ -23,7 +24,7 @@ public class InputReader : MonoBehaviour
 
     private void TryAtack()
     {
-        if (Input.GetMouseButton(ValueOfLeftClickMouse))
+        if (Input.GetMouseButton(ValueOfLeftClickMouse) || Input.GetKey(Attack))
             IsAtack?.Invoke();
     }
 }

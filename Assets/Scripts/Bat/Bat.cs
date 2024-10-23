@@ -39,7 +39,6 @@ public class Bat : MonoBehaviour
         {
             GameOver?.Invoke();
         }
-
         else if (interactable is Score)
         {
             _scoreCounter.Add();

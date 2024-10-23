@@ -7,8 +7,9 @@ public abstract class Attacker : MonoBehaviour
 
     public void Attack()
     {
-        SpawnerableObject newBullet =_pool.GetObject(transform.position);
-        newBullet.TryGetComponent(out Bullet bullet);
-        bullet.MakeShoot(_xDirectionShoot);
+        SpawnerableObject newBullet = _pool.GetObject(transform.position);
+
+        if (newBullet.TryGetComponent(out Bullet bullet))
+            bullet.MakeShoot(_xDirectionShoot);
     }
 }

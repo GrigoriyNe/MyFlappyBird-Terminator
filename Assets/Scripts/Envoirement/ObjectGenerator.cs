@@ -29,9 +29,9 @@ public abstract class ObjectGenerator<T> : MonoBehaviour where T : SpawnerableOb
         float spawnPositionY = Random.Range(_lowerBound, _upperBound);
         Vector3 spawnPoint = new Vector3(transform.position.x, spawnPositionY, transform.position.z);
 
-        var obj = _pool.GetObject();
+        var item = _pool.GetObject();
 
-        obj.gameObject.SetActive(true);
-        obj.transform.position = spawnPoint;
+        item.gameObject.SetActive(true);
+        item.transform.position = spawnPoint;
     }
 }

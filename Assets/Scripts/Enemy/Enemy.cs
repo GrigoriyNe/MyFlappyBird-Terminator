@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Enemy : SpawnerableObject, IInteractable
 {
-    [SerializeField] private int _shootDealayValue = 1;
+    [SerializeField] private float _shootDealayValue = 1;
     [SerializeField] private AttackerEnemy _attacker;
     [SerializeField] private SpriteObjectStorage _enemyStorage;
     
@@ -19,10 +19,10 @@ public class Enemy : SpawnerableObject, IInteractable
         _renderer.sprite = _enemyStorage.GetSprite();
 
         if (_coroutine == null)
-            _coroutine = StartCoroutine(Shoot());
+            _coroutine = StartCoroutine(Shooting());
     }
 
-    private IEnumerator Shoot()
+    private IEnumerator Shooting()
     {
         while (enabled)
         {

@@ -17,8 +17,17 @@ public class Bullet : SpawnerableObject, IInteractable
 
     public void MakeShoot(float direction)
     {
-        if (_coroutine == null && gameObject.activeSelf)
-            _coroutine = StartCoroutine(Life(direction));
+        if (gameObject.activeSelf)
+        {
+            if (_coroutine == null)
+            {
+                _coroutine = StartCoroutine(Life(direction));
+            }   
+        }
+        else
+        {
+            _coroutine = null;
+        }
     }
 
     private IEnumerator Life(float direction)
@@ -30,6 +39,7 @@ public class Bullet : SpawnerableObject, IInteractable
             yield return null;
         }
 
+        _coroutine = null;
         Return(this);
     }
 }

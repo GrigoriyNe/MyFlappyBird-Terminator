@@ -34,42 +34,41 @@ public abstract class ObjectPool<T> : MonoBehaviour where T : SpawnerableObject
 
     public SpawnerableObject GetObject()
     {
-        SpawnerableObject obj;
+        SpawnerableObject item;
 
         if (_pool.Count == 0)
         {
-            obj = Init();
+            item = Init();
 
-            return obj;
+            return item;
         }
 
-        obj = Init(_pool.Dequeue());
+        item = Init(_pool.Dequeue());
 
-        return obj;
+        return item;
     }
 
-    protected void PutObject(SpawnerableObject obj)
+    protected void PutObject(SpawnerableObject item)
     {
-        _pool.Enqueue(obj as T);
-        obj.Returned -= PutObject;
-        obj.gameObject.SetActive(false);
+        _pool.Enqueue(item as T);
+        item.Returned -= PutObject;
+        item.gameObject.SetActive(false);
     }
 
-    protected SpawnerableObject Init(SpawnerableObject obj)
+    protected SpawnerableObject Init(SpawnerableObject item)
     {
-        obj.Returned += PutObject;
+        item.Returned += PutObject;
 
-        return obj;
+        return item;
     }
 
     private SpawnerableObject Init()
     {
-        SpawnerableObject obj = Instantiate(_prefab);
-        obj.transform.parent = _container;
-        obj.Returned += PutObject;
+        SpawnerableObject item = Instantiate(_prefab);
+        item.transform.parent = _container;
+        item.Returned += PutObject;
         
-
-        return obj;
+        return item;
     }
 
     private void CleanContainer()
