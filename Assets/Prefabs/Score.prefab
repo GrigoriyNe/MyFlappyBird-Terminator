@@ -171,4 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff4b44490d43b4d4b8d86b4c141f9728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreStorage: {fileID: 0}
+  _spriteStorage: {fileID: 0}

@@ -15,7 +15,7 @@ public class BatMover : MonoBehaviour
     private Vector3 _startPosition;
     private Quaternion _maxRotation;
     private Quaternion _minRotation;
-    private bool _isJump = false;
+    private bool _isJump = true;
 
     private void OnEnable()
     {

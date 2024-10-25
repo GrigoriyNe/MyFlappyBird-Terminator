@@ -5,8 +5,8 @@ public class SpawnerableObject : MonoBehaviour
 {
     public event Action<SpawnerableObject> Returned;
 
-    public void Return(SpawnerableObject obj)
+    public void Return()
     {
-        Returned.Invoke(obj);
+        Returned.Invoke(this);
     }
 }

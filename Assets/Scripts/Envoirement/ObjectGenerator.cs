@@ -27,7 +27,7 @@ public abstract class ObjectGenerator<T> : MonoBehaviour where T : SpawnerableOb
     private void Spawn()
     {
         float spawnPositionY = Random.Range(_lowerBound, _upperBound);
-        Vector3 spawnPoint = new Vector3(transform.position.x, spawnPositionY, transform.position.z);
+        Vector2 spawnPoint = new Vector2(transform.position.x, spawnPositionY);
 
         var item = _pool.GetObject();
 

@@ -3,79 +3,82 @@ using UnityEngine;
 
 public abstract class ObjectPool<T> : MonoBehaviour where T : SpawnerableObject
 {
-    [SerializeField] protected Transform _container;
-    [SerializeField] protected SpawnerableObject _prefab;
-    [SerializeField] protected Game _game;
-    
-    protected Queue<T> _pool;
+    [SerializeField] protected Transform Container;
+    [SerializeField] protected SpawnerableObject Prefab;
+    [SerializeField] protected Game Game;
 
-    public IEnumerable<SpawnerableObject> PooledObjects => _pool;
+    protected Queue<T> Pool;
+
+    public IEnumerable<SpawnerableObject> PooledObjects => Pool;
 
     private void Awake()
     {
-        _pool = new Queue<T>();
+        Pool = new Queue<T>();
     }
 
     private void OnEnable()
     {
-        _game.Play += Reset;
+        Game.Play += Reset;
     }
 
     private void OnDisable()
     {
-        _game.Play -= Reset;
+        Game.Play -= Reset;
     }
 
     public void Reset()
     {
-        _pool.Clear();
-        CleanContainer();
+        Pool.Clear();
+        CloneContainer();
     }
 
     public SpawnerableObject GetObject()
     {
         SpawnerableObject item;
 
-        if (_pool.Count == 0)
+        if (Pool.Count < 3)
         {
             item = Init();
+            Activate(item);
 
             return item;
         }
 
-        item = Init(_pool.Dequeue());
+        item = Pool.Dequeue();
+        Activate(item);
 
         return item;
     }
 
     protected void PutObject(SpawnerableObject item)
     {
-        _pool.Enqueue(item as T);
         item.Returned -= PutObject;
         item.gameObject.SetActive(false);
+        Pool.Enqueue(item as T);
     }
 
-    protected SpawnerableObject Init(SpawnerableObject item)
+    protected void Activate(SpawnerableObject item)
     {
         item.Returned += PutObject;
+        item.gameObject.SetActive(true);
+    }
 
-        return item;
+    protected void CloneContainer()
+    {
+        for (int i = 0; i < Container.childCount; i++)
+        {
+            var putableItem = Container.GetChild(i).gameObject;
+
+            if (putableItem.TryGetComponent(out SpawnerableObject item))
+                PutObject(item);
+        }
     }
 
     private SpawnerableObject Init()
     {
-        SpawnerableObject item = Instantiate(_prefab);
-        item.transform.parent = _container;
-        item.Returned += PutObject;
-        
-        return item;
-    }
+        SpawnerableObject item = Instantiate(Prefab);
+        item.transform.parent = Container;
 
-    private void CleanContainer()
-    {
-        while (_container.childCount > 0)
-        {
-            DestroyImmediate(_container.GetChild(0).gameObject);
-        }
+        return item;
     }
 }

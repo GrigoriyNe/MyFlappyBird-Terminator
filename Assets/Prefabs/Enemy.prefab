@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4005506922208796571
 Transform:
   m_ObjectHideFlags: 0
@@ -102,8 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shootDealayValue: 1.8
   _attacker: {fileID: 5409260228418415004}
-  _enemyStorage: {fileID: 0}
-  _game: {fileID: 0}
+  _striteStorage: {fileID: 0}
 --- !u!114 &5409260228418415004
 MonoBehaviour:
   m_ObjectHideFlags: 0
