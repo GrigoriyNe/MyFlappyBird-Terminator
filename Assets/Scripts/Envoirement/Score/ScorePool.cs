@@ -1,2 +1,1 @@
-public class ScorePool : ObjectPool<Score>
-{ }
+public class ScorePool : ObjectPool<Score> { }

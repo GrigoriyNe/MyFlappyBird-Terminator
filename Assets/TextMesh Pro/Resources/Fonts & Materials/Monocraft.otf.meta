@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8dd2dde5f32caa24180079e514bcd4d4
+guid: 3666c56c9a1dc0044a0e606c97cbe224
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Random 8
+  - Monocraft
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

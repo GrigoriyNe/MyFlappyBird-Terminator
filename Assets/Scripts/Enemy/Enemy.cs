@@ -6,7 +6,7 @@ public class Enemy : SpawnerableObject, IInteractable
 {
     [SerializeField] private float _shootDealayValue = 1;
     [SerializeField] private AttackerEnemy _attacker;
-    [SerializeField] private SpriteObjectStorage _striteStorage;
+    [SerializeField] private SpriteObjectStorage _images;
 
     private Coroutine _coroutine;
     private WaitForSecondsRealtime _wait;
@@ -16,10 +16,10 @@ public class Enemy : SpawnerableObject, IInteractable
     {
         _wait = new WaitForSecondsRealtime(_shootDealayValue);
         _renderer = GetComponent<SpriteRenderer>();
-        _renderer.sprite = _striteStorage.GetSprite();
+        _renderer.sprite = _images.GetSprite();
     }
 
-    private void Update()
+    private void OnEnable()
     {
         if (_coroutine == null)
             _coroutine = StartCoroutine(Shooting());

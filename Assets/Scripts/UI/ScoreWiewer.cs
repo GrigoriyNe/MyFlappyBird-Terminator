@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class ScoreWiever : MonoBehaviour
 {
+    private const string ScoreTextForWiev = "SCORE: ";
+
     [SerializeField] private ScoreCounter _scoreCounter;
     [SerializeField] private TMP_Text _text;
 
@@ -18,6 +20,7 @@ public class ScoreWiever : MonoBehaviour
 
     private void ChangeWiev(int score)
     {
-        _text.text = score.ToString();
+        var scoreWiev = score.ToString();
+        _text.text = ScoreTextForWiev + scoreWiev;
     }
 }

@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class BuletPool : ObjectPool<Bullet>
+public class BulletPool : ObjectPool<Bullet>
 {
-    [SerializeField] private float _xOffset = 2;
     [SerializeField] private float _initialValuePool = 5;
 
     public SpawnerableObject GetObject(Vector3 start, Quaternion rotation)
@@ -23,8 +22,7 @@ public class BuletPool : ObjectPool<Bullet>
 
     private SpawnerableObject Init(Vector3 start, Quaternion rotation)
     {
-        Vector3 _targetVector3 = new Vector3(_xOffset, 0);
-        SpawnerableObject item = Instantiate(Prefab, start + _targetVector3, rotation);
+        SpawnerableObject item = Instantiate(Prefab, start, rotation);
         Activate(item);
         item.transform.parent = Container;
 
@@ -33,9 +31,8 @@ public class BuletPool : ObjectPool<Bullet>
 
     private SpawnerableObject Init(SpawnerableObject item, Vector3 start, Quaternion rotation)
     {
-        Vector3 _targetVector3 = new Vector3(_xOffset, 0);
         Activate(item);
-        item.transform.position = start + _targetVector3;
+        item.transform.position = start;
         item.transform.rotation = rotation;
 
         return item;

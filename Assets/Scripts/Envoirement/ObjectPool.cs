@@ -5,9 +5,10 @@ public abstract class ObjectPool<T> : MonoBehaviour where T : SpawnerableObject
 {
     [SerializeField] protected Transform Container;
     [SerializeField] protected SpawnerableObject Prefab;
-    [SerializeField] protected Game Game;
+    [SerializeField] private Game _game;
 
     protected Queue<T> Pool;
+    private int _initCreateValue = 4;
 
     public IEnumerable<SpawnerableObject> PooledObjects => Pool;
 
@@ -18,25 +19,25 @@ public abstract class ObjectPool<T> : MonoBehaviour where T : SpawnerableObject
 
     private void OnEnable()
     {
-        Game.Play += Reset;
+        _game.Play += Reset;
     }
 
     private void OnDisable()
     {
-        Game.Play -= Reset;
+        _game.Play -= Reset;
     }
 
     public void Reset()
     {
         Pool.Clear();
-        CloneContainer();
+        EnqueueContainer();
     }
 
     public SpawnerableObject GetObject()
     {
         SpawnerableObject item;
 
-        if (Pool.Count < 3)
+        if (Pool.Count < _initCreateValue)
         {
             item = Init();
             Activate(item);
@@ -63,7 +64,7 @@ public abstract class ObjectPool<T> : MonoBehaviour where T : SpawnerableObject
         item.gameObject.SetActive(true);
     }
 
-    protected void CloneContainer()
+    protected void EnqueueContainer()
     {
         for (int i = 0; i < Container.childCount; i++)
         {

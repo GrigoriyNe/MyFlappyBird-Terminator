@@ -13,17 +13,6 @@ public abstract class ObjectGenerator<T> : MonoBehaviour where T : SpawnerableOb
         StartCoroutine(GenerateObject());
     }
 
-    private IEnumerator GenerateObject()
-    {
-        var wait = new WaitForSeconds(_delay);
-
-        while (enabled)
-        {
-            Spawn();
-            yield return wait;
-        }
-    }
-
     private void Spawn()
     {
         float spawnPositionY = Random.Range(_lowerBound, _upperBound);
@@ -33,5 +22,16 @@ public abstract class ObjectGenerator<T> : MonoBehaviour where T : SpawnerableOb
 
         item.gameObject.SetActive(true);
         item.transform.position = spawnPoint;
+    }
+
+    private IEnumerator GenerateObject()
+    {
+        var wait = new WaitForSeconds(_delay);
+
+        while (enabled)
+        {
+            Spawn();
+            yield return wait;
+        }
     }
 }

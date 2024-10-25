@@ -15,10 +15,11 @@ public class BatMover : MonoBehaviour
     private Vector3 _startPosition;
     private Quaternion _maxRotation;
     private Quaternion _minRotation;
-    private bool _isJump = true;
+    private bool _isJump;
 
     private void OnEnable()
     {
+        _isJump = true;
         _input.IsFlyes += Fly;
     }
 
