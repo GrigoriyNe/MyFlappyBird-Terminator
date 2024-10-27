@@ -29,6 +29,7 @@ public class Bullet : SpawnerableObject, IInteractable
     {
         _timer = 0;
         _coroutine = null;
+        gameObject.SetActive(false);
     }
 
     public void SetDirection(float direction)

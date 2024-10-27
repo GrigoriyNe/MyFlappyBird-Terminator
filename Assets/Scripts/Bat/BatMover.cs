@@ -57,5 +57,6 @@ public class BatMover : MonoBehaviour
     public void Reset()
     {
         transform.position = _startPosition;
+        _isJump = true;
     }
 }

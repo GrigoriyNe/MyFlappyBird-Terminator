@@ -13,15 +13,15 @@ public class Game : MonoBehaviour
 
     private void OnEnable()
     {
-        _startScreen.PlayButtonClicked += OnPlayButtonClick;
-        _endGameScreen.RestartButtonClicked += OnRestartButtonClick;
+        _startScreen.ButtonClicked += OnPlayButtonClick;
+        _endGameScreen.ButtonClicked += OnRestartButtonClick;
         _bat.GameOver += OnGameOver;
     }
 
     private void OnDisable()
     {
-        _startScreen.PlayButtonClicked -= OnPlayButtonClick;
-        _endGameScreen.RestartButtonClicked -= OnRestartButtonClick;
+        _startScreen.ButtonClicked -= OnPlayButtonClick;
+        _endGameScreen.ButtonClicked -= OnRestartButtonClick;
         _bat.GameOver -= OnGameOver;
     }
 

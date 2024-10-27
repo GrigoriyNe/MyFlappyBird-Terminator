@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shootDealayValue: 1.8
   _attacker: {fileID: 5409260228418415004}
-  _striteStorage: {fileID: 0}
+  _images: {fileID: 1563428691172813289, guid: fdbbf776c129ff544b7cdac2114f8de7, type: 3}
 --- !u!114 &5409260228418415004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,8 +115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a008a7442d7ab4380a51152a0aa006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pool: {fileID: 0}
+  _bullets: {fileID: 0}
   _xDirectionShoot: -1
+  _xOffset: -1
 --- !u!50 &5057998652989870716
 Rigidbody2D:
   serializedVersion: 4

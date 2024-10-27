@@ -10,8 +10,6 @@ public abstract class ObjectPool<T> : MonoBehaviour where T : SpawnerableObject
     protected Queue<T> Pool;
     private int _initCreateValue = 4;
 
-    public IEnumerable<SpawnerableObject> PooledObjects => Pool;
-
     private void Awake()
     {
         Pool = new Queue<T>();
